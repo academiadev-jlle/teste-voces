@@ -27,8 +27,8 @@ public class Provider {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "id.provider")
-    private List<ProductProvider> productProviders;
+    @OneToMany(mappedBy = "provider")
+    private List<Product> products;
 
     @CreatedDate
     private LocalDateTime createdAt;

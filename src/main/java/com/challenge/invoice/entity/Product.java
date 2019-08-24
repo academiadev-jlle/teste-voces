@@ -37,8 +37,8 @@ public class Product {
     @NotNull
     private BigDecimal taxValue;
 
-    @OneToMany(mappedBy = "id.product")
-    private List<ProductProvider> productProviders;
+    @ManyToOne
+    private Provider provider;
 
     @CreatedDate
     private LocalDateTime createdAt;

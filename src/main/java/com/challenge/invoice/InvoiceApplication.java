@@ -1,7 +1,9 @@
 package com.challenge.invoice;
 
+import com.challenge.invoice.repository.CustomerRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
@@ -9,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class InvoiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(InvoiceApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(InvoiceApplication.class, args);
     }
 
 }
