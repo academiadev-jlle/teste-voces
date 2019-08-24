@@ -6,25 +6,26 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CustomerServiceTest {
 
-    @Autowired
+    @InjectMocks
     private CustomerService customerService;
 
-    @MockBean
+    @Mock
     private CustomerRepository repository;
 
     @Test
@@ -50,6 +51,18 @@ public class CustomerServiceTest {
         Assert.assertThat(result, Matchers.notNullValue());
         Assert.assertThat(result.getName(), Matchers.equalTo("eu"));
     }
+
+    @Test
+    @Transactional
+    public void whenFindByNameReturnCustomers() {
+        Mockito.when(repository.findByNameContainingIgnoreCase("eu"))
+                .thenReturn(Arrays.asList(getCustomer(15L), getCustomer(16L)));
+
+        List<Customer> result = customerService.findByName("eu");
+
+        Assert.assertThat(result, Matchers.hasSize(2));
+    }
+
 
     private Customer getCustomer(Long id) {
         return Customer.builder()
