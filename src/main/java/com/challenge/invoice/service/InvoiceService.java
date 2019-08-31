@@ -11,17 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
-public class InvoiceService {
+public class InvoiceService extends AbstractService<InvoiceRepository, Invoice, Long> {
 
-    private InvoiceRepository invoiceRepository;
-
-    public Invoice save(Invoice invoice) {
-        return invoiceRepository.save(invoice);
+    @Autowired
+    public InvoiceService(InvoiceRepository repository) {
+        super(repository);
     }
-
-    public Optional<Invoice> findById(Long id) {
-        return invoiceRepository.findById(id);
-    }
-
 }

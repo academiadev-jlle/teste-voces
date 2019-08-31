@@ -2,28 +2,16 @@ package com.challenge.invoice.service;
 
 import com.challenge.invoice.entity.Customer;
 import com.challenge.invoice.repository.CustomerRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
-@AllArgsConstructor
-public class CustomerService {
+public class CustomerService extends AbstractService<CustomerRepository, Customer, Long> {
 
-    private CustomerRepository customerRepository;
-
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    @Autowired
+    public CustomerService(CustomerRepository repository) {
+        super(repository);
     }
 
-    public Optional<Customer> findById(Long id) {
-        return customerRepository.findById(id);
-    }
-
-    public List<Customer> findByName(String name) {
-        return customerRepository.findByNameContainingIgnoreCase(name);
-    }
 
 }

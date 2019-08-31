@@ -10,17 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
-public class InvoiceProductService {
+public class InvoiceProductService extends AbstractService<InvoiceProductRepository, InvoiceProduct, InvoiceProductId> {
 
-    private InvoiceProductRepository invoiceProductRepository;
-
-    public InvoiceProduct save(InvoiceProduct invoiceProduct) {
-        return invoiceProductRepository.save(invoiceProduct);
+    @Autowired
+    public InvoiceProductService(InvoiceProductRepository repository) {
+        super(repository);
     }
-
-    public Optional<InvoiceProduct> findById(InvoiceProductId id) {
-        return invoiceProductRepository.findById(id);
-    }
-
 }
