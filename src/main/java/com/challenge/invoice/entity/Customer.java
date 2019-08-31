@@ -1,5 +1,7 @@
 package com.challenge.invoice.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -30,19 +32,23 @@ public class Customer {
     private String name;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @NotNull
     @Email
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Invoice> invoices;
 
     @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime updatedAT;
 
 }

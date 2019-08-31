@@ -11,7 +11,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AbstractService<R extends JpaRepository<T, ID>, T, ID> {
 
-    private R repository;
+    protected R repository;
 
     public T save(T entity) {
         return repository.save(entity);

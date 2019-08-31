@@ -49,4 +49,7 @@ public class Invoice {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    public Invoice(Long l) {
+        this.id = l;
+    }
 }

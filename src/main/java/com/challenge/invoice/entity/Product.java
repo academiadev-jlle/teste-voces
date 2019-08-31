@@ -49,4 +49,7 @@ public class Product {
     @OneToMany(mappedBy = "id.product")
     private List<InvoiceProduct> invoices;
 
+    public Product(Long l) {
+        this.id = l;
+    }
 }

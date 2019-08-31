@@ -3,7 +3,6 @@ package com.challenge.invoice.service;
 import com.challenge.invoice.entity.InvoiceProduct;
 import com.challenge.invoice.entity.InvoiceProductId;
 import com.challenge.invoice.repository.InvoiceProductRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +14,9 @@ public class InvoiceProductService extends AbstractService<InvoiceProductReposit
     @Autowired
     public InvoiceProductService(InvoiceProductRepository repository) {
         super(repository);
+    }
+
+    public Optional<InvoiceProduct> findById(Long invoiceId, Long productId) {
+        return this.repository.findByIdInvoiceIdAndIdProductId(invoiceId, productId);
     }
 }
