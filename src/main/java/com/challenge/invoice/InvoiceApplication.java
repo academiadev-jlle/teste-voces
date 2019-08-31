@@ -1,6 +1,5 @@
 package com.challenge.invoice;
 
-import com.challenge.invoice.repository.CustomerRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

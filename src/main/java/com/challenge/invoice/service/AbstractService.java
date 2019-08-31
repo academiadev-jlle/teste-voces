@@ -1,6 +1,8 @@
 package com.challenge.invoice.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -21,6 +23,10 @@ public class AbstractService<R extends JpaRepository<T, ID>, T, ID> {
 
     public List<T> findAll() {
         return repository.findAll();
+    }
+
+    public Page<T> findAll(Pageable page) {
+        return repository.findAll(page);
     }
 
 }
