@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +24,11 @@ public class CustomerController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "access_token")
+            @ApiImplicitParam(name = "Authorization", required = true, paramType = "header")
     })
     @GetMapping("/customer")
     public List<Customer> findAll() {
+        User o = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customerService.findAll();
     }
 
