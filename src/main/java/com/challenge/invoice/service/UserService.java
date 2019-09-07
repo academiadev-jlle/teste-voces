@@ -1,6 +1,7 @@
 package com.challenge.invoice.service;
 
 import com.challenge.invoice.entity.User;
+import com.challenge.invoice.exception.MessageException;
 import com.challenge.invoice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,10 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User save(User user) {
+    public User save(User user) throws MessageException {
+        if (repository.findByEmail(user.getEmail()).isPresent()) {
+            throw new MessageException("Email já utilizado");
+        }
         return repository.save(user);
     }
 
